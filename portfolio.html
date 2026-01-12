@@ -1,1 +1,333 @@
-এখানে আপনার HTML বসাবেন✅
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAYSAL SEJAL | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #0ea5e9;
+            --accent-gradient: linear-gradient(135deg, #0ea5e9, #818cf8);
+            --ring-gradient: conic-gradient(#0ea5e9, #22d3ee, #818cf8, #c084fc, #0ea5e9);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #f1f5f9;
+                --card-bg: #ffffff;
+                --text-main: #1e293b;
+                --text-dim: #64748b;
+                --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+                --border: rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--ring-gradient);
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-img {
+            position: relative;
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            background-image: url('https://suspicious-plum-kehppqjmns.edgeone.app/d07289ff-764a-4215-b302-946d5f430b44.png');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--card-bg);
+            z-index: 2;
+            transition: border-color 0.3s ease;
+        }
+
+        .name-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .verified {
+            color: #1d9bf0;
+            font-size: 18px;
+        }
+
+        .bio-container {
+            height: 24px;
+            margin-bottom: 24px;
+            font-weight: 500;
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--accent);
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .info-card {
+            background: var(--bg-color);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .info-row:last-child { border-bottom: none; }
+        .label { color: var(--text-dim); font-weight: 400; }
+        .value { color: var(--text-main); font-weight: 600; text-align: right; max-width: 65%; }
+
+        .btn-contact {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--accent-gradient);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+
+        .btn-contact:active { transform: scale(0.96); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, margin-top 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .contact-grid.active {
+            max-height: 400px;
+            margin-top: 20px;
+            opacity: 1;
+        }
+
+        .social-btn {
+            text-decoration: none;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: filter 0.2s;
+        }
+
+        .social-btn:active { filter: brightness(0.9); }
+        .full-width { grid-column: span 2; }
+
+        .fb { background: #1877f2; }
+        .ms { background: #0084ff; }
+        .wa { background: #25d366; }
+        .tg { background: #0088cc; }
+        .yt { background: #ff0000; }
+
+        footer {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-icons a {
+            color: var(--text-dim);
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .footer-icons a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-wrapper">
+            <div class="ring"></div>
+            <div class="profile-img"></div>
+        </div>
+
+        <div class="name-container">
+            <h1 class="name">FAYSAL SEJAL</h1>
+            <span class="verified">
+                <span class="fa-stack" style="font-size: 0.5em;">
+                    <i class="fa-solid fa-certificate fa-stack-2x"></i>
+                    <i class="fa-solid fa-check fa-stack-1x fa-inverse"></i>
+                </span>
+            </span>
+        </div>
+
+        <div class="bio-container">
+            <span id="typing-text"></span><span id="cursor">|</span>
+        </div>
+
+        <div class="info-card">
+            <div class="info-row"><span class="label">Age:</span><span class="value">28yers</span></div>
+            <div class="info-row"><span class="label">Gender:</span><span class="value">Male</span></div>
+            <div class="info-row"><span class="label">Religion:</span><span class="value">iSlam</span></div>
+            <div class="info-row"><span class="label">Country:</span><span class="value">Bangladesh</span></div>
+            <div class="info-row"><span class="label">Address:</span><span class="value">Hatirpool,Motaleb Plaza, Shop 400/L, Level #2, Dhaka-1205</span></div>
+        </div>
+
+        <button class="btn-contact" onclick="toggleContact()">
+            Contact Me <i id="arrow-icon" class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <div id="contact-section" class="contact-grid">
+            <a href="https://www.facebook.com/Ajbirrahmansuhan" class="social-btn fb full-width"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="https://www.facebook.com/messages/t/106502541802161/" class="social-btn ms"><i class="fa-brands fa-facebook-messenger"></i> Messenger</a>
+            <a href="https://api.whatsapp.com/send?phone=8801799923337&text=Hi%20" class="social-btn wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://t.me/Repairhubbd" class="social-btn tg"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            <a href="https://www.youtube.com/@RepairHubBD" class="social-btn yt"><i class="fa-brands fa-youtube"></i> YouTube</a>
+        </div>
+
+        <footer>
+            <p class="footer-text">© 2026 FAYSAL SEJAL. All rights reserved.</p>
+            <div class="footer-icons">
+                <a href="https://www.facebook.com/Ajbirrahmansuhan"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=8801799923337&text=Hi%20"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://t.me/Repairhubbd"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.youtube.com/@RepairHubBD"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const text = "BIO Your Smart Phone Service Point";
+        const typingElement = document.getElementById('typing-text');
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                typingElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 100);
+            }
+        }
+
+        function toggleContact() {
+            const section = document.getElementById('contact-section');
+            const icon = document.getElementById('arrow-icon');
+            section.classList.toggle('active');
+            if (section.classList.contains('active')) {
+                icon.className = 'fa-solid fa-chevron-up';
+            } else {
+                icon.className = 'fa-solid fa-chevron-down';
+            }
+        }
+
+        window.onload = type;
+    </script>
+</body>
+</html>
